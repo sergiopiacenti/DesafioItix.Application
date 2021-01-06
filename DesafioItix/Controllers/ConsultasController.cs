@@ -18,10 +18,10 @@ namespace DesafioItix.Controllers
         private readonly DesafioContext _context;
         private readonly IDataRepository<Consulta> _repository;
 
-        public ConsultasController(DesafioContext context, IDataRepository<Consulta> repo)
+        public ConsultasController(DesafioContext context, IDataRepository<Consulta> repository)
         {
             _context = context;
-            _repository = repo;
+            _repository = repository;
         }
 
         [HttpGet]
