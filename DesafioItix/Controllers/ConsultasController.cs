@@ -16,12 +16,12 @@ namespace DesafioItix.Controllers
     public class ConsultasController : ControllerBase
     {
         private readonly DesafioContext _context;
-        private readonly IDataRepository<Consulta> _repo;
+        private readonly IDataRepository<Consulta> _repository;
 
         public ConsultasController(DesafioContext context, IDataRepository<Consulta> repo)
         {
             _context = context;
-            _repo = repo;
+            _repository = repo;
         }
 
         [HttpGet]
@@ -96,8 +96,8 @@ namespace DesafioItix.Controllers
 
             try
             {
-                _repo.Update(consulta);
-                var save = await _repo.SaveAsync(consulta);
+                _repository.Update(consulta);
+                var save = await _repository.SaveAsync(consulta);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -122,8 +122,8 @@ namespace DesafioItix.Controllers
                 return BadRequest(ModelState);
             }
 
-            _repo.Add(consulta);
-            Consulta savedConsulta = await _repo.SaveAsync(consulta);
+            _repository.Add(consulta);
+            Consulta savedConsulta = await _repository.SaveAsync(consulta);
 
             return Ok(savedConsulta);
         }
@@ -165,8 +165,8 @@ namespace DesafioItix.Controllers
                 return NotFound();
             }
 
-            _repo.Delete(consulta);
-            var save = await _repo.SaveAsync(consulta);
+            _repository.Delete(consulta);
+            var save = await _repository.SaveAsync(consulta);
 
             return Ok(consulta);
         }
